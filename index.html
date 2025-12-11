@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter App</title>
+    <!-- Load Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and basic setup */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-white shadow-2xl rounded-xl p-8 transform transition duration-500 hover:scale-[1.02] border-t-8 border-indigo-500">
+        <!-- Title -->
+        <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-6">
+            Simple Counter
+        </h1>
+        <p class="text-center text-gray-500 mb-8">
+            Click the buttons to change the value.
+        </p>
+
+        <!-- Counter Display -->
+        <div id="counter-display" class="text-8xl font-black text-indigo-600 bg-indigo-50 p-6 rounded-lg text-center mb-10 shadow-inner select-none">
+            0
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            
+            <button id="decrement-button" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-150 transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-red-300">
+                <span class="text-2xl mr-2">-</span> Decrease
+            </button>
+            
+            <button id="increment-button" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-150 transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                <span class="text-2xl mr-2">+</span> Increase
+            </button>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize the counter variable starting at 0
+        let count = 0;
+        
+        // Get references to the HTML elements
+        const counterDisplay = document.getElementById('counter-display');
+        const incrementButton = document.getElementById('increment-button');
+        const decrementButton = document.getElementById('decrement-button');
+
+        // Function to update the number shown on the screen
+        function updateDisplay() {
+            counterDisplay.textContent = count;
+        }
+
+        // Function to increase the counter value
+        function increment() {
+            count++;
+            updateDisplay();
+        }
+
+        // Function to decrease the counter value
+        function decrement() {
+            // Check if the count is greater than 0 to prevent negative numbers
+            if (count > 0) {
+                count--;
+                updateDisplay();
+            }
+        }
+
+        // Attach the functions to the button clicks
+        incrementButton.addEventListener('click', increment);
+        decrementButton.addEventListener('click', decrement);
+
+        // Initial display update (optional, but good practice)
+        updateDisplay();
+    </script>
+</body>
+</html>
